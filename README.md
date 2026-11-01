@@ -1,12 +1,12 @@
 # MemRL Memory Compression
 
-[����˵��](README_zh.md)
+[中文说明](README_zh.md)
 
 An undergraduate CS project exploring a simple question: **can an agent keep fewer memories and still solve ALFWorld tasks well?**
 
 The current experiment reduces a bank of **300 memories to 195**, a **35% reduction in memory records**. We then compare the full bank and the smaller bank on the same tasks.
 
-**Current status:** the smaller bank loads correctly in MemRL, offline checks passed, and a small pilot completed. The full comparison is underway in the user's Ubuntu environment; final results have not yet been collected in this repository. This page does not claim that compression improves or preserves success rate.
+**Current status:** the smaller bank loads correctly in MemRL, offline checks passed, and a small pilot completed. The full comparison has been authorized to continue in the user's Ubuntu environment; later progress and final results have not yet been received for this repository. This page does not claim that compression improves or preserves success rate.
 
 ## What changed
 
