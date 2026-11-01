@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+private/
+local/
+checkpoints/
+raw_logs/
+*.log
+*.key
+*.pem
+.DS_Store

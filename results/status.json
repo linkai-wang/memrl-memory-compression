@@ -1,0 +1,23 @@
+{
+  "status": "awaiting_complete_evaluation_results",
+  "last_confirmed_evidence_date": "2026-11-01",
+  "planned_tasks_per_arm": 300,
+  "planned_episodes": 600,
+  "arms": {
+    "A_full300": {
+      "memories": 300
+    },
+    "C_content195": {
+      "memories": 195
+    }
+  },
+  "checks": {
+    "native_loading": true,
+    "offline_retrieval": true,
+    "pilot_completed_tasks_per_arm": 3
+  },
+  "full_run_completed": null,
+  "current_live_progress_verified": false,
+  "final_performance_metrics": null,
+  "note": "Full evaluation was authorized to continue after the pilot. No later progress or final outcome has been received for this upload."
+}
