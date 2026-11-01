@@ -1,8 +1,14 @@
-# Experiment details
+# Current validation experiment for MemRL memory compression
+
+## Place in the research
+
+The overall topic is periodic memory compression as a possible improvement to MemRL's memory management. The intended system compresses accumulated memories at stage boundaries and then continues to collect and use experience. ALFWorld supplies the agent tasks for this first evaluation; the research target is MemRL's memory mechanism.
+
+The current experiment checks one fixed compression step. A favorable result would motivate further experiments, but would not establish the benefit of repeated compression or performance on other benchmarks.
 
 ## Question
 
-How does keeping 195 of 300 existing memories affect ALFWorld task success and resource use when retrieval stays the same?
+How does keeping 195 of 300 existing memories affect MemRL's task success and resource use when retrieval stays the same? We measure this using ALFWorld as the current benchmark.
 
 This experiment studies the effect of one fixed memory selection. It does not isolate every selection rule, compare against random pruning, or test periodic updates during training.
 

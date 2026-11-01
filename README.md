@@ -1,14 +1,20 @@
-# MemRL Memory Compression
+# Periodic Memory Compression for MemRL
 
 [中文说明](README_zh.md)
 
-An undergraduate CS project exploring a simple question: **can an agent keep fewer memories and still solve ALFWorld tasks well?**
+An undergraduate CS research project exploring **how to improve MemRL through periodic memory compression**. As experience accumulates, the goal is to organize and reduce the memory bank at stage boundaries while keeping useful experience available for later tasks.
 
-The current experiment reduces a bank of **300 memories to 195**, a **35% reduction in memory records**. We then compare the full bank and the smaller bank on the same tasks.
+The research focuses on MemRL's memory management. **ALFWorld is the agent-task benchmark chosen for the current evaluation.** Other benchmarks could be considered later; the current experiment does not establish results beyond ALFWorld.
+
+## Research goal and current stage
+
+The intended process is to accumulate task experience, compress memories at a stage boundary, and continue using MemRL with the smaller bank. We want to study what to retain, how to preserve useful strategies, and how repeated compression affects later performance and resource use.
+
+The current stage tests one compression step before building that repeated process: a bank of **300 memories is reduced to 195**, a **35% reduction in memory records**. We compare the full and smaller banks under the same MemRL retrieval settings. This provides an initial check of a compression decision; repeated compression during continued training has not yet been evaluated.
 
 **Current status:** the smaller bank loads correctly in MemRL, offline checks passed, and a small pilot completed. The full comparison has been authorized to continue in the user's Ubuntu environment; later progress and final results have not yet been received for this repository. This page does not claim that compression improves or preserves success rate.
 
-## What changed
+## Current compression step
 
 We selected existing memories using their content and task coverage, with help from an AI assistant. The 195 retained records keep their original text, Q values, and feedback counts. We did not write new merged summaries or use Q values to choose the subset.
 
@@ -16,7 +22,7 @@ Of the 105 removed records, 11 have reviewed content representatives that remain
 
 The smaller bank still covers all 187 recorded task/object/destination combinations and keeps all 151 original retrieval index keys and vectors. **35% fewer records does not mean 35% fewer vectors, tokens, or API costs.**
 
-## The comparison
+## Current benchmark comparison
 
 | Setting | A: full bank | C: smaller bank |
 |---|---:|---:|
@@ -38,7 +44,7 @@ We will compare success rate, action decisions, and token usage, and inspect tas
 
 ## Next
 
-Finish the fixed A/C comparison, add complete results and simple charts, and review the tasks on which the groups differ. Later work may turn the selection process into a repeatable periodic memory update. The current experiment tests one fixed subset, not an automatic online consolidation system.
+Finish the fixed A/C comparison, add complete results and simple charts, and review the tasks on which the groups differ. Use that evidence to develop a repeatable compression step for MemRL, then test compression at multiple stage boundaries while experience continues to accumulate. The periodic process is the research goal; its benefit has not yet been demonstrated.
 
 See [the next steps](docs/next_steps.md) and [the result status](results/status.json).
 
