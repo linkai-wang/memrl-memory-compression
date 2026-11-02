@@ -1,5 +1,7 @@
 # Current validation experiment for MemRL memory compression
 
+The completed aggregate results and paired analysis were received on 2026-11-02. See [results and interpretation](results.md). The settings below describe the fixed protocol used for that run.
+
 ## Place in the research
 
 The overall topic is periodic memory compression as a possible improvement to MemRL's memory management. The intended system compresses accumulated memories at stage boundaries and then continues to collect and use experience. ALFWorld supplies the agent tasks for this first evaluation; the research target is MemRL's memory mechanism.

@@ -1,0 +1,174 @@
+{
+  "status": "complete_paired_analysis",
+  "paired_tasks": 300,
+  "complete": true,
+  "bank_counts": {
+    "A_full300": 300,
+    "C_content195": 195
+  },
+  "compression": 0.35,
+  "discordance_table": {
+    "both_success": 281,
+    "both_failure": 9,
+    "A_only_success": 5,
+    "C_only_success": 5
+  },
+  "exact_mcnemar_two_sided_p": 1,
+  "all_task_paired_differences": {
+    "success_difference_percentage_points": {
+      "n": 300,
+      "C_minus_A": 0,
+      "ci95": [
+        -2,
+        2
+      ]
+    },
+    "decision_steps_difference": {
+      "n": 300,
+      "C_minus_A": 0.6466666666666666,
+      "ci95": [
+        -0.3767499999999999,
+        1.6866666666666668
+      ]
+    },
+    "solver_tokens_difference": {
+      "n": 300,
+      "C_minus_A": 4274.1466666666665,
+      "ci95": [
+        -5855.344333333333,
+        14224.873583333332
+      ]
+    },
+    "memory_context_characters_difference": {
+      "n": 300,
+      "C_minus_A": 52.026666666666664,
+      "ci95": [
+        30.899166666666666,
+        73.48091666666666
+      ]
+    }
+  },
+  "common_success_count": 281,
+  "common_success_paired_differences": {
+    "decision_steps_difference": {
+      "n": 281,
+      "C_minus_A": 0.604982206405694,
+      "ci95": [
+        -0.3167259786476868,
+        1.5552491103202835
+      ]
+    },
+    "solver_tokens_difference": {
+      "n": 281,
+      "C_minus_A": 3571.120996441281,
+      "ci95": [
+        -4569.097241992882,
+        11854.464501779357
+      ]
+    }
+  },
+  "by_task_type": {
+    "pick_clean_then_place_in_recep": {
+      "paired": 50,
+      "A_successes": 47,
+      "C_successes": 47,
+      "A_SR": 0.94,
+      "C_SR": 0.94
+    },
+    "look_at_obj_in_light": {
+      "paired": 50,
+      "A_successes": 50,
+      "C_successes": 50,
+      "A_SR": 1,
+      "C_SR": 1
+    },
+    "pick_cool_then_place_in_recep": {
+      "paired": 50,
+      "A_successes": 42,
+      "C_successes": 41,
+      "A_SR": 0.84,
+      "C_SR": 0.82
+    },
+    "pick_and_place_simple": {
+      "paired": 50,
+      "A_successes": 50,
+      "C_successes": 50,
+      "A_SR": 1,
+      "C_SR": 1
+    },
+    "pick_two_obj_and_place": {
+      "paired": 50,
+      "A_successes": 50,
+      "C_successes": 50,
+      "A_SR": 1,
+      "C_SR": 1
+    },
+    "pick_heat_then_place_in_recep": {
+      "paired": 50,
+      "A_successes": 47,
+      "C_successes": 48,
+      "A_SR": 0.94,
+      "C_SR": 0.96
+    }
+  },
+  "bootstrap": {
+    "method": "paired, stratified within task type",
+    "resamples": 10000,
+    "confidence": 0.95
+  },
+  "primary_contrast": "C_content195 SR minus A_full300 SR",
+  "formal_noninferiority_test_performed": false,
+  "zero_discordance_bootstrap_can_be_degenerate": false,
+  "task_set_role": "new_task_instance_holdout_from_official_train_pool_not_official_valid_unseen",
+  "periodic_training_effect_claimed": false,
+  "automatic_bank_revision_performed": false,
+  "limits": [
+    "Custom balanced train-pool task-instance holdout, not official valid_unseen.",
+    "Single run per task/arm; remote sampling was not made deterministic by local seeds.",
+    "Failure/partial records are not dropped or replaced by easier tasks.",
+    "Bootstrap differences do not automatically establish a 3pp noninferiority claim.",
+    "35% fewer records does not imply 35% fewer vectors, tokens or cost."
+  ],
+  "api_usage_this_experiment": {
+    "A_full300": {
+      "embedding": {
+        "completion_tokens": 0,
+        "errors": 0,
+        "length_limited": 0,
+        "prompt_tokens": 3481,
+        "requests_started": 300,
+        "responses_saved": 300,
+        "total_tokens": 3481
+      },
+      "solver": {
+        "completion_tokens": 110158,
+        "errors": 0,
+        "length_limited": 0,
+        "prompt_tokens": 20532919,
+        "requests_started": 4162,
+        "responses_saved": 4162,
+        "total_tokens": 20643077
+      }
+    },
+    "C_content195": {
+      "embedding": {
+        "completion_tokens": 0,
+        "errors": 0,
+        "length_limited": 0,
+        "prompt_tokens": 3481,
+        "requests_started": 300,
+        "responses_saved": 300,
+        "total_tokens": 3481
+      },
+      "solver": {
+        "completion_tokens": 114898,
+        "errors": 0,
+        "length_limited": 0,
+        "prompt_tokens": 21810423,
+        "requests_started": 4356,
+        "responses_saved": 4356,
+        "total_tokens": 21925321
+      }
+    }
+  }
+}

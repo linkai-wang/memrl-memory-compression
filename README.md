@@ -8,22 +8,22 @@ An undergraduate research project exploring **periodic memory compression to imp
 
 AI-assisted selection reduced **300 memories to 195 (35% fewer records)**. Retained text and Q values are unchanged; some useful information may be lost.
 
-| Group | Memory bank |
-|---|---|
-| A | Original 300 |
-| C | Selected 195 |
+| Group | Memories | Success |
+|---|---:|---:|
+| A | 300 | 286/300 (95.33%) |
+| C | 195 | 286/300 (95.33%) |
 
-Both use MemRL's similarity + Q retrieval with frozen memory and Q. They attempt the same 300 held-out tasks from the ALFWorld training pool—a custom holdout, not official `valid_unseen`.
+Both used MemRL's similarity + Q retrieval with frozen memory and Q on the same 300 ALFWorld train-pool holdout tasks, not official `valid_unseen`.
 
-Loading, offline checks, and a small pilot passed. **Full results are pending.** Repeated compression across training stages remains to be tested.
+**Results:** the success-rate difference was 0 percentage points (95% paired bootstrap interval: −2 to +2). Mean decisions rose 4.66% and solver tokens rose 6.21%; their difference intervals included zero. Repeated-stage compression remains untested.
 
 ## Next
 
-Compare success rate, decisions, and tokens, then develop and test repeated stage-based compression within MemRL.
+Inspect the 10 tasks with different outcomes, then develop reproducible compression and test it across multiple stages within MemRL.
 
 ## Details
 
-[Experiment](docs/experiment.md) · [Plan](docs/next_steps.md) · [Data](data/) · [Results](results/status.json) · [Reporting tool](tools/README.md)
+[Experiment](docs/experiment.md) · [Results](docs/results.md) · [Plan](docs/next_steps.md) · [Data](data/) · [Reporting tool](tools/README.md)
 
 The full local runner is not included. AI assisted code, screening, and documentation.
 

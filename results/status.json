@@ -1,23 +1,17 @@
 {
-  "status": "awaiting_complete_evaluation_results",
-  "last_confirmed_evidence_date": "2026-11-01",
+  "status": "complete_evaluation_and_paired_analysis_reported",
+  "last_confirmed_evidence_date": "2026-11-02",
   "planned_tasks_per_arm": 300,
   "planned_episodes": 600,
-  "arms": {
-    "A_full300": {
-      "memories": 300
-    },
-    "C_content195": {
-      "memories": 195
-    }
-  },
-  "checks": {
-    "native_loading": true,
-    "offline_retrieval": true,
-    "pilot_completed_tasks_per_arm": 3
-  },
-  "full_run_completed": null,
-  "current_live_progress_verified": false,
-  "final_performance_metrics": null,
-  "note": "Full evaluation was authorized to continue after the pilot. No later progress or final outcome has been received for this upload."
+  "completed_tasks_per_arm": 300,
+  "completed_episodes": 600,
+  "full_run_completed": true,
+  "memory_and_q_frozen": true,
+  "aggregate_consistency_checked": true,
+  "individual_episode_logs_independently_read_by_assistant": false,
+  "evidence_source": "User supplied Ubuntu result summaries in this conversation.",
+  "results": "summary.json",
+  "paired_analysis": "paired_analysis.json",
+  "periodic_training_effect_verified": false,
+  "next_action": "Inspect the 10 tasks with different outcomes and retrieval evidence; keep the current evaluation fixed."
 }

@@ -1,0 +1,57 @@
+{
+  "status": "complete_aggregate_results",
+  "plan_canonical_sha256": "8ddeb8047891e615c87c587e586acdd93725ca6cdfce15023a0ca02d802a3979",
+  "paired_tasks": 300,
+  "episodes": 600,
+  "record_reduction_fraction": 0.35,
+  "task_set_role": "unused_task_instances_from_official_train_pool_not_valid_unseen",
+  "arms": {
+    "A_full300": {
+      "memory_count": 300,
+      "completed": 300,
+      "successes": 286,
+      "success_rate": 0.9533333333333334,
+      "mean_decisions": 13.873333333333333,
+      "solver_tokens": {
+        "prompt_tokens": 20532919,
+        "completion_tokens": 110158,
+        "total_tokens": 20643077
+      }
+    },
+    "C_content195": {
+      "memory_count": 195,
+      "completed": 300,
+      "successes": 286,
+      "success_rate": 0.9533333333333334,
+      "mean_decisions": 14.52,
+      "solver_tokens": {
+        "prompt_tokens": 21810423,
+        "completion_tokens": 114898,
+        "total_tokens": 21925321
+      }
+    }
+  },
+  "paired_outcomes": {
+    "both_success": 281,
+    "both_failure": 9,
+    "A_only_success": 5,
+    "C_only_success": 5
+  },
+  "success_difference_percentage_points_C_minus_A": {
+    "estimate": 0.0,
+    "ci95": [
+      -2,
+      2
+    ]
+  },
+  "exact_mcnemar_two_sided_p": 1,
+  "memory_and_q_frozen": true,
+  "formal_noninferiority_test_performed": false,
+  "verification_scope": "summary_consistency_only_not_episode_log_audit",
+  "evidence_source": "User-supplied Ubuntu eval_summary and paired_analysis reports; summary consistency checked locally.",
+  "evidence_received_date": "2026-11-02",
+  "relative_changes_C_vs_A": {
+    "mean_decisions_percent": 4.661220567035085,
+    "solver_tokens_percent": 6.2114964740963785
+  }
+}
