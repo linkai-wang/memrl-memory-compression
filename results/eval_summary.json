@@ -1,0 +1,38 @@
+{
+  "api_usage_this_experiment": {
+    "A_full300": {
+      "embedding": {"completion_tokens": 0, "errors": 0, "length_limited": 0, "prompt_tokens": 3481, "requests_started": 300, "responses_saved": 300, "total_tokens": 3481},
+      "solver": {"completion_tokens": 110158, "errors": 0, "length_limited": 0, "prompt_tokens": 20532919, "requests_started": 4162, "responses_saved": 4162, "total_tokens": 20643077}
+    },
+    "C_content195": {
+      "embedding": {"completion_tokens": 0, "errors": 0, "length_limited": 0, "prompt_tokens": 3481, "requests_started": 300, "responses_saved": 300, "total_tokens": 3481},
+      "solver": {"completion_tokens": 114898, "errors": 0, "length_limited": 0, "prompt_tokens": 21810423, "requests_started": 4356, "responses_saved": 4356, "total_tokens": 21925321}
+    }
+  },
+  "arms": {
+    "A_full300": {
+      "completed": 300, "invalid_actions": 107, "length_limited_outputs": 0,
+      "mean_decisions": 13.873333333333333, "mean_memory_context_chars": 3285.22,
+      "memory_count": 300, "pending": 0,
+      "solver_usage": {"completion_tokens": 110158, "prompt_tokens": 20532919, "total_tokens": 20643077},
+      "success_rate": 0.9533333333333334, "successes": 286
+    },
+    "C_content195": {
+      "completed": 300, "invalid_actions": 86, "length_limited_outputs": 0,
+      "mean_decisions": 14.52, "mean_memory_context_chars": 3337.2466666666664,
+      "memory_count": 195, "pending": 0,
+      "solver_usage": {"completion_tokens": 114898, "prompt_tokens": 21810423, "total_tokens": 21925321},
+      "success_rate": 0.9533333333333334, "successes": 286
+    }
+  },
+  "complete": true,
+  "memory_and_q_frozen": true,
+  "note": "Custom six-type balanced train-pool instance holdout; not official valid_unseen. Only the memory bank differs. Paired single-run evidence; no memory/Q updates.",
+  "paired": {"A_only_success": 5, "C_only_success": 5, "both_failure": 9, "both_success": 281, "completed_pairs": 300},
+  "partial_results_are_exploratory": false,
+  "periodic_effect_claimed": false,
+  "plan_canonical_sha256": "8ddeb8047891e615c87c587e586acdd93725ca6cdfce15023a0ca02d802a3979",
+  "planned_tasks_per_arm": 300,
+  "protocol": "alfworld_ac300_frozen_full300_vs_content195_v1",
+  "task_set_role": "new_task_instance_holdout_from_official_train_pool_not_official_valid_unseen"
+}

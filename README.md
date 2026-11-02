@@ -2,29 +2,110 @@
 
 [中文说明](README_zh.md)
 
-An undergraduate research project exploring **periodic memory compression to improve MemRL**: reducing accumulated memories at stage boundaries while preserving useful experience.
+An undergraduate research project exploring **periodic memory compression to improve MemRL**. ALFWorld is the agent-task benchmark for the current experiment.
 
-## Current experiment
+The first compression step selects **195 of 300 memories (35% fewer records)**. Retained text, Q values, and feedback counts are unchanged. Selection is AI-assisted and includes capacity tradeoffs, so useful information may be lost.
 
-AI-assisted selection reduced **300 memories to 195 (35% fewer records)**. Retained text and Q values are unchanged; some useful information may be lost.
+## Experiment
 
-| Group | Memories | Success |
+A uses the original 300 memories; C uses the selected 195. Both use the same MemRL similarity + Q retrieval, model, and prompts. Memory and Q stay frozen. Each group attempts the same 300 tasks, with 50 tasks per type: **600 episodes in total**.
+
+Tasks are held-out instances from the ALFWorld training pool, not official `valid_unseen`. This tests one fixed compression step; repeated-stage compression remains untested.
+
+## Overall comparison
+
+![Memory size, success rate, decisions, and solver tokens](figures/overview.svg)
+
+| Measure | A: 300 | C: 195 | C−A / relative change |
+|---|---:|---:|---:|
+| Completed tasks | 300 | 300 | 0 |
+| Active memory records | 300 | 195 | -105 (-35.00%) |
+| Original index keys | 151 | 151 | 0 |
+| Successful tasks | 286 | 286 | 0 |
+| Success rate | 95.33% | 95.33% | 0 pp |
+| Failed tasks | 14 | 14 | 0 |
+| Total decisions | 4,162 | 4,356 | +194 (+4.66%) |
+| Mean decisions / task | 13.8733 | 14.5200 | +0.6467 (+4.66%) |
+| Mean memory context characters / task | 3,285.22 | 3,337.25 | +52.03 (+1.58%) |
+| Invalid actions | 107 | 86 | -21 (-19.63%) |
+| Invalid actions / decisions (derived) | 2.57% | 1.97% | -0.60 pp |
+| Separate retrieval latency | Not measured | Not measured | — |
+
+Relative changes use A as the denominator. `pp` means percentage points. Record reduction does not establish an equal reduction in storage bytes, vectors, or runtime. Invalid-action rates are derived from invalid actions divided by all decisions.
+
+## Token use and API accounting
+
+| Measure | A: 300 | C: 195 | C−A / relative change |
+|---|---:|---:|---:|
+| Solver input tokens | 20,532,919 | 21,810,423 | +1,277,504 (+6.22%) |
+| Solver output tokens | 110,158 | 114,898 | +4,740 (+4.30%) |
+| Total solver tokens | 20,643,077 | 21,925,321 | +1,282,244 (+6.21%) |
+| Mean solver tokens / task | 68,810.26 | 73,084.40 | +4,274.15 (+6.21%) |
+| Total embedding tokens | 3,481 | 3,481 | +0 (+0.00%) |
+| Solver requests / saved responses | 4,162 / 4,162 | 4,356 / 4,356 | — |
+| Embedding requests / saved responses | 300 / 300 | 300 / 300 | — |
+| API journal error count | 0 | 0 | 0 |
+| Length-limited solver outputs | 0 | 0 | 0 |
+
+Token counts describe usage, not currency cost. API error counts come from the request journals; they do not count environment-level interruptions. Total decisions equal solver response counts in this run.
+
+## Results by task type
+
+![Success counts for the six task types](figures/task_types.svg)
+
+| Task type | A: 300 | C: 195 | SR difference |
+|---|---:|---:|---:|
+| Clean then place | 47/50 (94%) | 47/50 (94%) | +0 pp |
+| Look at object in light | 50/50 (100%) | 50/50 (100%) | +0 pp |
+| Cool then place | 42/50 (84%) | 41/50 (82%) | -2 pp |
+| Simple pick and place | 50/50 (100%) | 50/50 (100%) | +0 pp |
+| Place two objects | 50/50 (100%) | 50/50 (100%) | +0 pp |
+| Heat then place | 47/50 (94%) | 48/50 (96%) | +2 pp |
+
+Each type has 50 tasks. The one-task shifts in cooling and heating are descriptive, not established task-specific effects.
+
+## Paired task outcomes
+
+![Paired success and failure outcomes](figures/paired_outcomes.svg)
+
+| Paired outcome | Tasks | Share |
 |---|---:|---:|
-| A | 300 | 286/300 (95.33%) |
-| C | 195 | 286/300 (95.33%) |
+| Both succeeded | 281 | 93.67% |
+| Only A succeeded | 5 | 1.67% |
+| Only C succeeded | 5 | 1.67% |
+| Both failed | 9 | 3.00% |
 
-Both used MemRL's similarity + Q retrieval with frozen memory and Q on the same 300 ALFWorld train-pool holdout tasks, not official `valid_unseen`.
+The groups have the same overall success count but disagree on 10 tasks. Exact two-sided McNemar **p = 1.0**; this does not prove equivalence.
 
-**Results:** the success-rate difference was 0 percentage points (95% paired bootstrap interval: −2 to +2). Mean decisions rose 4.66% and solver tokens rose 6.21%; their difference intervals included zero. Repeated-stage compression remains untested.
+## Paired differences and uncertainty
 
-## Next
+![C minus A differences with 95 percent paired bootstrap intervals](figures/paired_uncertainty.svg)
 
-Inspect the 10 tasks with different outcomes, then develop reproducible compression and test it across multiple stages within MemRL.
+| Measure | C−A | 95% paired interval |
+|---|---:|---:|
+| All 300: success rate (pp) | +0.00 | [-2.00, +2.00] |
+| All 300: decisions / task | +0.647 | [-0.377, +1.687] |
+| All 300: solver tokens / task | +4,274.15 | [-5,855.34, +14,224.87] |
+| All 300: memory characters / task | +52.03 | [+30.90, +73.48] |
+| 281 common successes: decisions / task | +0.605 | [-0.317, +1.555] |
+| 281 common successes: solver tokens / task | +3,571.12 | [-4,569.10, +11,854.46] |
 
-## Details
+Intervals use 10,000 paired bootstrap resamples within task type. The point estimates for decisions and tokens are higher in C, but their intervals include zero. The reported interval for presented memory context is above zero. Intervals were supplied by the local analysis, not recomputed from episode logs here.
 
-[Experiment](docs/experiment.md) · [Results](docs/results.md) · [Plan](docs/next_steps.md) · [Data](data/) · [Reporting tool](tools/README.md)
+## What this means
 
-The full local runner is not included. AI assisted code, screening, and documentation.
+- **Capacity:** 35% fewer active records, with the same observed success rate of 95.33%.
+- **Efficiency:** no demonstrated decision/token saving; independent retrieval latency and actual storage-byte savings have not been measured.
+- **Scope:** no formal noninferiority result and no evidence yet for repeated compression during continued MemRL training.
+
+Next, inspect the 10 different-outcome tasks and retrieval traces, measure retrieval costs, and develop reproducible compression using separate development data. Keep this completed test fixed.
+
+## Data and reproduction
+
+[Experiment settings](docs/experiment.md) · [Detailed interpretation](docs/results.md) · [Plan](docs/next_steps.md) · [Compression data](data/) · [Full evaluation summary](results/eval_summary.json) · [Paired analysis](results/paired_analysis.json)
+
+Rebuild the four charts as SVG and PNG with [tools/plot_results.py](tools/plot_results.py); see [instructions](tools/README.md). Figures use the public aggregate JSON. The full local runner and individual episode logs are not included.
+
+The user supplied completed Ubuntu reports on 2026-11-02. Aggregate consistency was checked; underlying episodes were not independently read by the assistant. AI assisted code, screening, and documentation.
 
 Built on [MemRL](https://github.com/MemTensor/MemRL); evaluated using [ALFWorld](https://github.com/alfworld/alfworld).
