@@ -77,20 +77,6 @@ Each type has 50 tasks. The one-task shifts in cooling and heating are descripti
 
 The groups have the same overall success count but disagree on 10 tasks. Exact two-sided McNemar **p = 1.0**; this does not prove equivalence.
 
-## Paired differences and uncertainty
-
-![C minus A differences with 95 percent paired bootstrap intervals](figures/paired_uncertainty.svg)
-
-| Measure | C−A | 95% paired interval |
-|---|---:|---:|
-| All 300: success rate (pp) | +0.00 | [-2.00, +2.00] |
-| All 300: decisions / task | +0.647 | [-0.377, +1.687] |
-| All 300: solver tokens / task | +4,274.15 | [-5,855.34, +14,224.87] |
-| All 300: memory characters / task | +52.03 | [+30.90, +73.48] |
-| 281 common successes: decisions / task | +0.605 | [-0.317, +1.555] |
-| 281 common successes: solver tokens / task | +3,571.12 | [-4,569.10, +11,854.46] |
-
-Intervals use 10,000 paired bootstrap resamples within task type. The point estimates for decisions and tokens are higher in C, but their intervals include zero. The reported interval for presented memory context is above zero. Intervals were supplied by the local analysis, not recomputed from episode logs here.
 
 ## What this means
 
